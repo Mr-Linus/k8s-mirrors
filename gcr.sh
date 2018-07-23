@@ -8,6 +8,7 @@ registry_name=registry.cn-hangzhou.aliyuncs.com/geekcloud
 registry_host=registry.cn-hangzhou.aliyuncs.com
 
 function pull_images(){
+    echo "Pulling Images"
     docker pull k8s.gcr.io/kube-apiserver-amd64:$k8s_version
     docker pull k8s.gcr.io/kube-controller-manager-amd64:$k8s_version
     docker pull k8s.gcr.io/kube-scheduler-amd64:$k8s_version
@@ -18,6 +19,7 @@ function pull_images(){
 }
 
 function set_tags(){
+    echo "Setting Tags"
     docker tag k8s.gcr.io/kube-apiserver-amd64:$k8s_version $registry_name/kube-apiserver-amd64:$k8s_version
     docker tag k8s.gcr.io/kube-controller-manager-amd64:$k8s_version $registry_name/kube-controller-manager-amd64:$k8s_version
     docker tag k8s.gcr.io/kube-scheduler-amd64:$k8s_version $registry_name/kube-scheduler-amd64:$k8s_version
@@ -28,14 +30,15 @@ function set_tags(){
 }
 
 function push_images(){
+    echo "Pushing Images""
     docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
-    sudo docker pull $registry_name/kube-apiserver-amd64:$k8s_version
-    sudo docker pull $registry_name/kube-controller-manager-amd64:$k8s_version
-    sudo docker pull $registry_name/kube-scheduler-amd64:$k8s_version
-    sudo docker pull $registry_name/kube-proxy-amd64:$k8s_version
-    sudo docker pull $registry_name/pause:$pause_version
-    sudo docker pull $registry_name/etcd-amd64:$etcd_version
-    sudo docker pull $registry_name/coredns:$coredns_version
+    sudo docker push $registry_name/kube-apiserver-amd64:$k8s_version
+    sudo docker push $registry_name/kube-controller-manager-amd64:$k8s_version
+    sudo docker push $registry_name/kube-scheduler-amd64:$k8s_version
+    sudo docker push $registry_name/kube-proxy-amd64:$k8s_version
+    sudo docker push $registry_name/pause:$pause_version
+    sudo docker push $registry_name/etcd-amd64:$etcd_version
+    sudo docker push $registry_name/coredns:$coredns_version
 }
 
 pull_images
