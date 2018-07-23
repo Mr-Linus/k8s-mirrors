@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+addons:
+  apt:
+    packages:
+      - docker-ce
+os:
+  - linux
+script: 
+  - sudo ./gcr.sh
