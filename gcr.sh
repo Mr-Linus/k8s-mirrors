@@ -30,7 +30,7 @@ function set_tags(){
 }
 
 function push_images(){
-    echo "Pushing Images""
+    echo "Pushing Images"
     docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
     sudo docker push $registry_name/kube-apiserver-amd64:$k8s_version
     sudo docker push $registry_name/kube-controller-manager-amd64:$k8s_version
