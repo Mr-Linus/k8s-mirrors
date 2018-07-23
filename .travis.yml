@@ -8,4 +8,4 @@ addons:
 os:
   - linux
 script: 
-  - sudo ./gcr.sh
+  - sudo /bin/bash gcr.sh
