@@ -44,7 +44,7 @@ function push_images(){
 function reset_tags(){
     docker tag $registry_name/kube-apiserver-amd64:$k8s_version k8s.gcr.io/kube-apiserver-amd64:$k8s_version
     docker tag $registry_name/kube-controller-manager-amd64:$k8s_version k8s.gcr.io/kube-controller-manager-amd64:$k8s_version
-    docker tag $registry_name/kube-scheduler-amd64:$k8s_version gcr.io/kube-scheduler-amd64:$k8s_version 
+    docker tag $registry_name/kube-scheduler-amd64:$k8s_version k8s.gcr.io/kube-scheduler-amd64:$k8s_version 
     docker tag $registry_name/kube-proxy-amd64:$k8s_version k8s.gcr.io/kube-proxy-amd64:$k8s_version 
     docker tag $registry_name/pause:$pause_version k8s.gcr.io/pause:$pause_version 
     docker tag $registry_name/etcd-amd64:$etcd_version k8s.gcr.io/etcd-amd64:$etcd_version 
