@@ -37,3 +37,7 @@ function push_images(){
     sudo docker pull $registry_name/etcd-amd64:$etcd_version
     sudo docker pull $registry_name/coredns:$coredns_version
 }
+
+pull_images
+set_tags
+push_images
