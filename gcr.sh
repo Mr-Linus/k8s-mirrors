@@ -60,7 +60,7 @@ function local_pull_images(){
     docker pull $registry_name/etcd-amd64:$etcd_version k8s.gcr.io/etcd-amd64:$etcd_version 
     docker pull $registry_name/coredns:$coredns_version k8s.gcr.io/coredns:$coredns_version
 }
-}
+
 #server
 pull_images
 set_tags
