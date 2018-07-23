@@ -5,6 +5,7 @@ pause_version=3.1
 etcd_version=3.2.18
 coredns_version=1.1.3
 registry_name=registry.cn-hangzhou.aliyuncs.com/geekcloud
+registry_host=registry.cn-hangzhou.aliyuncs.com
 
 function pull_images(){
     docker pull k8s.gcr.io/kube-apiserver-amd64:$k8s_version
@@ -27,7 +28,7 @@ function set_tags(){
 }
 
 function push_images(){
-    docker login -u $username -p $password
+    docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
     sudo docker pull $registry_name/kube-apiserver-amd64:$k8s_version
     sudo docker pull $registry_name/kube-controller-manager-amd64:$k8s_version
     sudo docker pull $registry_name/kube-scheduler-amd64:$k8s_version
