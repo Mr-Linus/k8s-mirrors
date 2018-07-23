@@ -44,6 +44,7 @@ reset_tags
 ./install-k8s-master.sh
 ```
 > 下面可以做什么:
+
 > 选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下
 
 
