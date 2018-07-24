@@ -36,7 +36,8 @@ reset_tags
 - 关闭selinux
 - 关闭防火墙
 - 集群里的每个节点的/etc/hosts都要有所有节点ip和与其对应的hostname
-- docker安装完毕
+- docker安装完毕 
+> 安装docker可以参考[docker安装脚本](https://github.com/Mr-Linus/shell-repo/blob/master/docker/docker_common.sh)
 ### 安装kubeadm
 ```bash
 ./install-kubeadm_el7.sh
