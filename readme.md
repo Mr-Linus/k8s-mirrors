@@ -6,7 +6,7 @@
 
 #### 目前同步的k8s版本:V1.11.0
 
-本仓库拉取只需修改镜像仓库地址由`k8s.gcr.io`修改为`registry.cn-hangzhou.aliyuncs.com/geekcloud`
+本仓库拉取只需修改镜像仓库地址由`k8s.gcr.io`修改为`registry.cn-hangzhou.aliyuncs.com/geekcloud`,整个过程无需翻墙
 你也可以使用本项目中的GCR脚本,修改最后几行:
 ```bash
 #server
