@@ -39,6 +39,7 @@ function push_images(){
     sudo docker push $registry_name/pause:$pause_version
     sudo docker push $registry_name/etcd-amd64:$etcd_version
     sudo docker push $registry_name/coredns:$coredns_version
+    docker logout 
 }
 
 function reset_tags(){
