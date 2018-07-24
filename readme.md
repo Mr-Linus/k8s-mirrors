@@ -35,6 +35,7 @@ reset_tags
 - 关闭swap
 - 关闭selinux
 - 关闭防火墙
+- 集群里的每个节点的/etc/hosts都要有所有节点ip和与其对应的hostname
 ### 安装kubeadm
 ```bash
 ./install-kubeadm_el7.sh
