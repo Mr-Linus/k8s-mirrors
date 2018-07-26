@@ -57,7 +57,7 @@ reset_tags
 
 ### 下面可以做什么:
 
-选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下,如果你当前拉取速度过慢也可以考虑使用`calico-images.sh`脚本加速拉取
+选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下,如果你当前拉取速度过慢也可以考虑使用`network-images.sh`脚本加速拉取镜像
 
 
 有任何问题欢迎issue!

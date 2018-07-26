@@ -10,3 +10,4 @@ os:
 script: 
   - sudo /bin/bash k8s-images.sh
   - sudo /bin/bash calico-images.sh
+  - sudo rm -f /home/travis/.docker/config.json
