@@ -13,6 +13,7 @@ function pull_images(){
     docker pull quay.io/calico/node:$calico_node_version
     docker pull quay.io/calico/cni:$calico_cni_version
     docker pull quay.io/coreos/flannel:$flannel_version
+}
 
 function set_tags(){
     echo "Setting Tags"
