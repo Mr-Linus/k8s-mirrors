@@ -31,24 +31,33 @@ local_pull_images
 reset_tags
 ```
 执行脚本即可实现容器镜像拉取
-### Centos安装K8S前需要做的工作:
+### Centos使用kubdeadm安装K8S前需要做的工作:
 - 关闭swap
 - 关闭selinux
 - 关闭防火墙
 - 集群里的每个节点的/etc/hosts都要有所有节点ip和与其对应的hostname
 - docker安装完毕 
 > 安装docker可以参考[docker安装脚本](https://github.com/Mr-Linus/shell-repo/blob/master/docker/docker_common.sh)
+>
+> 不要瞎看网上的教程,kubeadm安装不同于二进制安装,只需安装必须的kubeadm和kubelet等组件,其他如etcd等服务都是通过kubeadm自动创建,无需自行安装!
+
 ### 安装kubeadm
 ```bash
 ./install-kubeadm_el7.sh
 ```
+### 拉取镜像
+- 如果你的机器可以翻越GFW,请忽略本步骤
+- 如果你的机器不能翻越GFW,请先执行脚本`k8s-images.sh`
+
 ### 主节点安装k8s
 ```bash
 ./install-k8s-master.sh
 ```
+> 这个时候节点join进来并不会ready,需要你安装网络组件
+
 ### 下面可以做什么:
 
- 选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下,如果你当前拉取速度过慢也可以考虑使用`calico-images.sh`脚本加速拉取
+选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下,如果你当前拉取速度过慢也可以考虑使用`calico-images.sh`脚本加速拉取
 
 
 有任何问题欢迎issue!

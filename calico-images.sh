@@ -9,8 +9,8 @@ registry_host=registry.cn-hangzhou.aliyuncs.com
 function pull_images(){
     echo "Pulling Images"
     docker pull quay.io/calico/typha:$calico_typha_version
-    docker pull quay.io/calico/node:v3.1.3:$calico_node_version
-    docker pull quay.io/calico/cni:v3.1.3:$calico_cni_version
+    docker pull quay.io/calico/node:$calico_node_version
+    docker pull quay.io/calico/cni:$calico_cni_version
 
 function set_tags(){
     echo "Setting Tags"
