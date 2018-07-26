@@ -15,8 +15,8 @@ function pull_images(){
 function set_tags(){
     echo "Setting Tags"
     docker tag quay.io/calico/typha:$calico_typha_version $registry_name/typha:$calico_typha_version
-    docker tag quay.io/calico/node:v3.1.3:$calico_node_version $registry_name/calico-node:$calico_node_version
-    docker tag quay.io/calico/cni:v3.1.3:$calico_cni_version $registry_name/calico-cni:$calico_cni_version
+    docker tag quay.io/calico/node:$calico_node_version $registry_name/calico-node:$calico_node_version
+    docker tag quay.io/calico/cni:$calico_cni_version $registry_name/calico-cni:$calico_cni_version
 }
 
 function push_images(){
@@ -30,8 +30,8 @@ function push_images(){
 
 function reset_tags(){
     docker tag $registry_name/typha:$calico_typha_version quay.io/calico/typha:$calico_typha_version 
-    docker tag $registry_name/calico-node:$calico_node_version quay.io/calico/node:v3.1.3:$calico_node_version
-    docker tag $registry_name/calico-cni:$calico_cni_version quay.io/calico/cni:v3.1.3:$calico_cni_version
+    docker tag $registry_name/calico-node:$calico_node_version quay.io/calico/node:$calico_node_version
+    docker tag $registry_name/calico-cni:$calico_cni_version quay.io/calico/cni:$calico_cni_version
 }
 }
 
