@@ -1,4 +1,5 @@
 sudo: required
+language: python 
 services:
   - docker
 addons:
@@ -7,6 +8,10 @@ addons:
       - docker-ce
 os:
   - linux
+python:
+  - "3.6"
+install: 
+  - pip install -r requirements.txt  
 script: 
   - sudo /bin/bash k8s-images.sh
   - sudo /bin/bash network-images.sh

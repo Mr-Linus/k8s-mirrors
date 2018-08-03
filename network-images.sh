@@ -26,10 +26,14 @@ function set_tags(){
 function push_images(){
     echo "Pushing Images"
     docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
-    sudo docker push $registry_name/typha:$calico_typha_version
-    sudo docker push $registry_name/calico-node:$calico_node_version
-    sudo docker push $registry_name/calico-cni:$calico_cni_version
-    sudo docker push $registry_name/flannel:$flannel_version
+    python check-tags.py -i $accessid -k $accesskey -n typha -t $calico_typha_version -s geekcloud \
+    && sudo docker push $registry_name/typha:$calico_typha_version
+    python check-tags.py -i $accessid -k $accesskey -n calico-node -t $calico_node_version -s geekcloud \
+    && sudo docker push $registry_name/calico-node:$calico_node_version
+    python check-tags.py -i $accessid -k $accesskey -n calico-cni -t $calico_cni_version -s geekcloud \
+    && sudo docker push $registry_name/calico-cni:$calico_cni_version
+    python check-tags.py -i $accessid -k $accesskey -n flannel -t $flannel_version -s geekcloud \
+    && sudo docker push $registry_name/flannel:$flannel_version
     docker logout 
 }
 

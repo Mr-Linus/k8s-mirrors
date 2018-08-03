@@ -32,13 +32,20 @@ function set_tags(){
 function push_images(){
     echo "Pushing Images"
     docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
-    sudo docker push $registry_name/kube-apiserver-amd64:$k8s_version
-    sudo docker push $registry_name/kube-controller-manager-amd64:$k8s_version
-    sudo docker push $registry_name/kube-scheduler-amd64:$k8s_version
-    sudo docker push $registry_name/kube-proxy-amd64:$k8s_version
-    sudo docker push $registry_name/pause:$pause_version
-    sudo docker push $registry_name/etcd-amd64:$etcd_version
-    sudo docker push $registry_name/coredns:$coredns_version
+    python check-tags.py -i $accessid -k $accesskey -n kube-apiserver-amd64 -t $k8s_version -s geekcloud \
+    && sudo docker push $registry_name/kube-apiserver-amd64:$k8s_version 
+    python check-tags.py -i $accessid -k $accesskey -n kube-controller-manager-amd64 -t $k8s_version -s geekcloud \
+    && sudo docker push $registry_name/kube-controller-manager-amd64:$k8s_version 
+    python check-tags.py -i $accessid -k $accesskey -n kube-scheduler-amd64 -t $k8s_version -s geekcloud \
+    && sudo docker push $registry_name/kube-scheduler-amd64:$k8s_version
+    python check-tags.py -i $accessid -k $accesskey -n kube-proxy-amd64 -t $k8s_version -s geekcloud \
+    && sudo docker push $registry_name/kube-proxy-amd64:$k8s_version
+    python check-tags.py -i $accessid -k $accesskey -n pause -t $pause_version -s geekcloud \
+    && sudo docker push $registry_name/pause:$pause_version
+    python check-tags.py -i $accessid -k $accesskey -n etcd-amd64 -t $etcd_version -s geekcloud \
+    && sudo docker push $registry_name/etcd-amd64:$etcd_version
+    python check-tags.py -i $accessid -k $accesskey -n coredns -t $coredns_version -s geekcloud \
+    && sudo docker push $registry_name/coredns:$coredns_version
     docker logout 
 }
 
@@ -63,6 +70,7 @@ function local_pull_images(){
 }
 
 #server
+
 pull_images
 set_tags
 push_images
