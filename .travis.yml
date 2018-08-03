@@ -12,7 +12,7 @@ os:
   - linux
 
 install: 
-  - sudo pip install -r requirements.txt  
+  - pip install -r requirements.txt  
 script: 
   -  /bin/bash k8s-images.sh
   -  /bin/bash network-images.sh
