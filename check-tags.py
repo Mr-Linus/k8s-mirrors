@@ -1,4 +1,5 @@
 from aliyunsdkcore import client
+from aliyunsdkcore.profile import region_provider
 from aliyunsdkcr.request.v20160607 import GetImageLayerRequest
 import optparse
 
@@ -15,12 +16,11 @@ def main():
         print(parser.usage)
         exit(1)
     else:
-        client.region_provider.add_endpoint("cr", "cn-hangzhou", "cr.cn-hangzhou.aliyuncs.com")
+        region_provider.add_endpoint("cr", "cn-hangzhou", "cr.cn-hangzhou.aliyuncs.com")
         request = GetImageLayerRequest.GetImageLayerRequest()
         request.set_RepoName(options.name)
         request.set_RepoNamespace(options.space)
         request.set_Tag(options.tag)
-
         response = eval(client.AcsClient(options.id, options.key, 'cn-hangzhou').do_action_with_exception(request).
                         decode('utf-8'))
         if response['data']['image'] == {}:
