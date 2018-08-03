@@ -9,29 +9,29 @@ registry_host=registry.cn-hangzhou.aliyuncs.com
 
 function pull_images(){
     echo "Pulling Images"
-    docker pull k8s.gcr.io/kube-apiserver-amd64:$k8s_version
-    docker pull k8s.gcr.io/kube-controller-manager-amd64:$k8s_version
-    docker pull k8s.gcr.io/kube-scheduler-amd64:$k8s_version
-    docker pull k8s.gcr.io/kube-proxy-amd64:$k8s_version
-    docker pull k8s.gcr.io/pause:$pause_version
-    docker pull k8s.gcr.io/etcd-amd64:$etcd_version
-    docker pull k8s.gcr.io/coredns:$coredns_version
+    sudo docker pull k8s.gcr.io/kube-apiserver-amd64:$k8s_version
+    sudo docker pull k8s.gcr.io/kube-controller-manager-amd64:$k8s_version
+    sudo docker pull k8s.gcr.io/kube-scheduler-amd64:$k8s_version
+    sudo docker pull k8s.gcr.io/kube-proxy-amd64:$k8s_version
+    sudo docker pull k8s.gcr.io/pause:$pause_version
+    sudo docker pull k8s.gcr.io/etcd-amd64:$etcd_version
+    sudo docker pull k8s.gcr.io/coredns:$coredns_version
 }
 
 function set_tags(){
     echo "Setting Tags"
-    docker tag k8s.gcr.io/kube-apiserver-amd64:$k8s_version $registry_name/kube-apiserver-amd64:$k8s_version
-    docker tag k8s.gcr.io/kube-controller-manager-amd64:$k8s_version $registry_name/kube-controller-manager-amd64:$k8s_version
-    docker tag k8s.gcr.io/kube-scheduler-amd64:$k8s_version $registry_name/kube-scheduler-amd64:$k8s_version
-    docker tag k8s.gcr.io/kube-proxy-amd64:$k8s_version $registry_name/kube-proxy-amd64:$k8s_version
-    docker tag k8s.gcr.io/pause:$pause_version $registry_name/pause:$pause_version
-    docker tag k8s.gcr.io/etcd-amd64:$etcd_version $registry_name/etcd-amd64:$etcd_version
-    docker tag k8s.gcr.io/coredns:$coredns_version $registry_name/coredns:$coredns_version
+    sudo docker tag k8s.gcr.io/kube-apiserver-amd64:$k8s_version $registry_name/kube-apiserver-amd64:$k8s_version
+    sudo docker tag k8s.gcr.io/kube-controller-manager-amd64:$k8s_version $registry_name/kube-controller-manager-amd64:$k8s_version
+    sudo docker tag k8s.gcr.io/kube-scheduler-amd64:$k8s_version $registry_name/kube-scheduler-amd64:$k8s_version
+    sudo docker tag k8s.gcr.io/kube-proxy-amd64:$k8s_version $registry_name/kube-proxy-amd64:$k8s_version
+    sudo docker tag k8s.gcr.io/pause:$pause_version $registry_name/pause:$pause_version
+    sudo docker tag k8s.gcr.io/etcd-amd64:$etcd_version $registry_name/etcd-amd64:$etcd_version
+    sudo docker tag k8s.gcr.io/coredns:$coredns_version $registry_name/coredns:$coredns_version
 }
 
 function push_images(){
     echo "Pushing Images"
-    docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
+    sudo docker login -u $username -p $password registry.cn-hangzhou.aliyuncs.com
     python check-tags.py -i $accessid -k $accesskey -n kube-apiserver-amd64 -t $k8s_version -s geekcloud \
     && sudo docker push $registry_name/kube-apiserver-amd64:$k8s_version 
     python check-tags.py -i $accessid -k $accesskey -n kube-controller-manager-amd64 -t $k8s_version -s geekcloud \
@@ -46,27 +46,27 @@ function push_images(){
     && sudo docker push $registry_name/etcd-amd64:$etcd_version
     python check-tags.py -i $accessid -k $accesskey -n coredns -t $coredns_version -s geekcloud \
     && sudo docker push $registry_name/coredns:$coredns_version
-    docker logout 
+    sudo docker logout 
 }
 
 function reset_tags(){
-    docker tag $registry_name/kube-apiserver-amd64:$k8s_version k8s.gcr.io/kube-apiserver-amd64:$k8s_version
-    docker tag $registry_name/kube-controller-manager-amd64:$k8s_version k8s.gcr.io/kube-controller-manager-amd64:$k8s_version
-    docker tag $registry_name/kube-scheduler-amd64:$k8s_version k8s.gcr.io/kube-scheduler-amd64:$k8s_version 
-    docker tag $registry_name/kube-proxy-amd64:$k8s_version k8s.gcr.io/kube-proxy-amd64:$k8s_version 
-    docker tag $registry_name/pause:$pause_version k8s.gcr.io/pause:$pause_version 
-    docker tag $registry_name/etcd-amd64:$etcd_version k8s.gcr.io/etcd-amd64:$etcd_version 
-    docker tag $registry_name/coredns:$coredns_version k8s.gcr.io/coredns:$coredns_version
+    sudo docker tag $registry_name/kube-apiserver-amd64:$k8s_version k8s.gcr.io/kube-apiserver-amd64:$k8s_version
+    sudo docker tag $registry_name/kube-controller-manager-amd64:$k8s_version k8s.gcr.io/kube-controller-manager-amd64:$k8s_version
+    sudo docker tag $registry_name/kube-scheduler-amd64:$k8s_version k8s.gcr.io/kube-scheduler-amd64:$k8s_version 
+    sudo docker tag $registry_name/kube-proxy-amd64:$k8s_version k8s.gcr.io/kube-proxy-amd64:$k8s_version 
+    sudo docker tag $registry_name/pause:$pause_version k8s.gcr.io/pause:$pause_version 
+    sudo docker tag $registry_name/etcd-amd64:$etcd_version k8s.gcr.io/etcd-amd64:$etcd_version 
+    sudo docker tag $registry_name/coredns:$coredns_version k8s.gcr.io/coredns:$coredns_version
 }
 
 function local_pull_images(){
-    docker pull $registry_name/kube-apiserver-amd64:$k8s_version 
-    docker pull $registry_name/kube-controller-manager-amd64:$k8s_version 
-    docker pull $registry_name/kube-scheduler-amd64:$k8s_version 
-    docker pull $registry_name/kube-proxy-amd64:$k8s_version 
-    docker pull $registry_name/pause:$pause_version 
-    docker pull $registry_name/etcd-amd64:$etcd_version 
-    docker pull $registry_name/coredns:$coredns_version 
+    sudo docker pull $registry_name/kube-apiserver-amd64:$k8s_version 
+    sudo docker pull $registry_name/kube-controller-manager-amd64:$k8s_version 
+    sudo docker pull $registry_name/kube-scheduler-amd64:$k8s_version 
+    sudo docker pull $registry_name/kube-proxy-amd64:$k8s_version 
+    sudo docker pull $registry_name/pause:$pause_version 
+    sudo docker pull $registry_name/etcd-amd64:$etcd_version 
+    sudo docker pull $registry_name/coredns:$coredns_version 
 }
 
 #server
