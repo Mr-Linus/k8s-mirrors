@@ -7,7 +7,7 @@ addons:
     packages:
       - docker-ce
 python:
-  - "3.7"
+  - "3.7.0"
 os:
   - linux
 
