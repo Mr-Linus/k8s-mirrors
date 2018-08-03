@@ -14,6 +14,6 @@ os:
 install: 
   - pip install -r requirements.txt  
 script: 
-  - sudo /bin/bash k8s-images.sh
-  - sudo /bin/bash network-images.sh
-  - sudo rm -f /home/travis/.docker/config.json
+  -  /bin/bash k8s-images.sh
+  -  /bin/bash network-images.sh
+  - rm -f /home/travis/.docker/config.json
