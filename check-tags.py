@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# coding=utf-8
 from aliyunsdkcore import client
 from aliyunsdkcr.request.v20160607 import GetImageLayerRequest
 import optparse

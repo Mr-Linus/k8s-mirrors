@@ -6,10 +6,11 @@ addons:
   apt:
     packages:
       - docker-ce
-os:
-  - linux
 python:
   - "3.6"
+os:
+  - linux
+
 install: 
   - pip install -r requirements.txt  
 script: 
