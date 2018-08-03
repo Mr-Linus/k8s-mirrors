@@ -16,12 +16,13 @@ def main():
         exit(1)
     else:
         client.region_provider.add_endpoint("cr", "cn-hangzhou", "cr.cn-hangzhou.aliyuncs.com")
-        apiClient = client.AcsClient(options.id, options.key, 'cn-hangzhou')
         request = GetImageLayerRequest.GetImageLayerRequest()
         request.set_RepoName(options.name)
         request.set_RepoNamespace(options.space)
         request.set_Tag(options.tag)
-        response = eval(apiClient.do_action(request).decode('utf-8'))
+
+        response = eval(client.AcsClient(options.id, options.key, 'cn-hangzhou').do_action_with_exception(request).
+                        decode('utf-8'))
         if response['data']['image'] == {}:
             print("This tag does not exist.")
             exit(0)
