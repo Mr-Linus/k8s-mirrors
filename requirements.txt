@@ -1,2 +1,2 @@
-aliyun-python-sdk-core-v3
+aliyun-python-sdk-core
 aliyun-python-sdk-cr
