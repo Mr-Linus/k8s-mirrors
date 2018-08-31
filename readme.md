@@ -55,7 +55,7 @@ reset_tags
 ### 安装kubeadm
 
 ```bash
-./install-kubeadm_el7.sh
+./install-generic/install-kubeadm_el7.sh
 ```
 > 安装脚本附带详细注释,安装出现任何疑问可以查看
 
@@ -68,7 +68,7 @@ reset_tags
 
 ### 主节点安装k8s
 ```bash
-./install-k8s-master.sh
+./install-generic/install-k8s-master.sh
 ```
 > 这个时候节点join进来并不会ready,需要你安装网络组件
 >
