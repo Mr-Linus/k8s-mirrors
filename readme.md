@@ -75,6 +75,7 @@ reset_tags
 > 安装脚本附带详细注释,安装出现任何疑问可以查看
 ### 下面可以做什么:
 
+- 部署 CNI
 选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下,如果你当前拉取速度过慢也可以考虑使用`network-images.sh`脚本加速拉取镜像
 同样的,修改最后几行,
 将
@@ -100,7 +101,8 @@ push_images
 local_pull_images
 reset_tags
 ```
-
+- 部署 ingress-nginx 
+拉取脚本存于[/ingress-nginx](/ingress-nginx),使用方法同上
 ### 有任何问题欢迎issue!
 
 ![img-source-from-https://github.com/docker/dockercraft](https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true)
