@@ -104,6 +104,14 @@ reset_tags
 ```
 - 部署 ingress-nginx 
 拉取脚本存于[/ingress-nginx](/ingress-nginx),使用方法同上
+
+本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[张馆长大佬](https://github.com/zhangguanzhang) 提供的脚本。
+假设需要拉取gcr.io/google_containers/pause:3.0
+
+```
+curl -s https://www.zhangguanzhang.com/pull | bash -s -- gcr.io/google_containers/pause:3.0
+```
+
 ### 有任何问题欢迎issue!
 
 ![img-source-from-https://github.com/docker/dockercraft](https://github.com/docker/dockercraft/raw/master/docs/img/contribute.png?raw=true)
