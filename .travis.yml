@@ -15,6 +15,7 @@ install:
   - pip install -r requirements.txt  
 script: 
   -  /bin/bash k8s-images.sh
+  -  /bin/bash k8s-images-1.12.sh
   -  /bin/bash network-images.sh
   -  /bin/bash ingress-nginx/ingress-nginx-images.sh
   - sudo rm -f /home/travis/.docker/config.json
