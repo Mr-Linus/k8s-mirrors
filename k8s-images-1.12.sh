@@ -2,7 +2,7 @@
 
 k8s_version=v1.12.5
 pause_version=3.1
-etcd_version=3.2.34
+etcd_version=3.2.24
 coredns_version=1.2.2
 dashborad_version=v1.8.3
 registry_name=registry.cn-hangzhou.aliyuncs.com/geekcloud
