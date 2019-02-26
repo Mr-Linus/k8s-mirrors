@@ -118,11 +118,18 @@ reset_tags
 - 部署 ingress-nginx 
 拉取脚本存于[/ingress-nginx](/ingress-nginx),使用方法同上
 
-本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[张馆长大佬](https://github.com/zhangguanzhang) 提供的脚本。
-假设需要拉取gcr.io/google_containers/pause:3.0
-
+本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[image-pull镜像](https://github.com/Mr-Linus/image-pull)实现镜像拉取。
+假设需要拉取的镜像名写在文件`/root/image.txt`中: 
+```text
+quay.io/coreos/flannel:v0.11.0
+quay.io/coreos/flannel:v0.12.0
 ```
-curl -s https://www.zhangguanzhang.com/pull | bash -s -- gcr.io/google_containers/pause:3.0
+运行容器实现镜像拉取：
+```
+docker run --rm -it \
+        -v /root/image.txt:/image-pull/image.txt \
+        -v /var/run/docker.sock:/var/run/docker.sock  \
+        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:latest
 ```
 
 ### 有任何问题欢迎issue!
