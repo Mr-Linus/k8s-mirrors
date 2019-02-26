@@ -13,7 +13,7 @@
 - 2018.9.1 已同步 ingress-nginx 镜像
 
 ### 如何使用 
-- 运行容器拉取指定镜像
+- 方法一：运行容器拉取指定镜像
 #### 版本V1.13.3
 ```shell
 docker run --rm -it \
@@ -26,7 +26,7 @@ docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
         registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-1.12.5
 ```
-- 运行脚本拉取镜像(V1.12.5)
+- 方法二：运行脚本拉取镜像(V1.12.5)
 整个过程无需翻墙,只需修改脚本`k8s-images.sh`最后几行,
 将:
 ```bash
