@@ -12,15 +12,15 @@
 - 2018.8.15 已同步 dashboard 镜像
 - 2018.9.1 已同步 ingress-nginx 镜像
 
-### 如何使用 {how-to-use}
+### 如何使用 {#how-to-use}
 - 运行容器拉取指定镜像
-## 版本V1.13.3
+#### 版本V1.13.3
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
         registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-1.13.3
 ```
-## 版本V1.12.5
+#### 版本V1.12.5
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
@@ -75,7 +75,7 @@ reset_tags
 
 ### 拉取镜像
 - 如果你的机器可以翻越GFW,请忽略本步骤
-- 如果你的机器不能翻越GFW,请先执行[拉取镜像](how-to-use)
+- 如果你的机器不能翻越GFW,请先执行[拉取镜像](#how-to-use)
 
 #### 需要注意的是,每个节点无论是工作节点还是master节点都需要拉取镜像!! 
 #### 否则将会出现pod一直处于pending或者构建镜像的状态!! 
