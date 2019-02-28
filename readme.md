@@ -35,7 +35,7 @@
 - 如果你的机器可以翻越GFW,请忽略本步骤
 - 如果你的机器不能翻越GFW,请看以下步骤：
 ### 如何使用 
-- 方法一：运行容器拉取指定镜像
+- 运行容器拉取指定镜像
 #### 版本V1.13.3
 ```shell
 docker run --rm -it \
@@ -48,34 +48,6 @@ docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
         registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-1.12.5
 ```
-- 方法二：运行脚本拉取镜像(V1.12.5)
-整个过程无需翻墙,只需修改脚本`k8s-images.sh`最后几行,
-将:
-```bash
-#server
-pull_images
-set_tags
-push_images
-
-#local
-
-#local_pull_images
-#reset_tags
-```
-修改为:
-```bash
-#server
-#pull_images
-#set_tags
-#push_images
-
-#local
-local_pull_images
-reset_tags
-```
-
-执行脚本即可实现容器镜像拉取
-
 
 #### 需要注意的是,每个节点无论是工作节点还是master节点都需要拉取镜像!! 
 #### 否则将会出现pod一直处于pending或者构建镜像的状态!! 
@@ -90,31 +62,26 @@ reset_tags
 ### 下面可以做什么:
 
 - 部署 CNI
-选择需要的集群网络方案:`flannel`或`calico`,安装脚本在`install-networks`目录下,如果你当前拉取速度过慢也可以考虑使用`network-images.sh`脚本加速拉取镜像
-同样的,修改最后几行,
-将
-```bash
-#server
-pull_images
-set_tags
-push_images
-
-#local
-
-#local_pull_images
-#reset_tags
+选择需要的集群网络方案:`flannel`或`calico`(2选1)
+1. flannel:
+运行容器实现镜像拉取（可以GFW请忽略本步骤）：
+```shell
+#获取镜像列表
+curl -s  https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml | grep image | awk -F': ' '{ print $2  }' > $pwd/image-flannel.txt
+#拉取镜像
+docker run --rm -it \
+        -v $pwd/image-flannel.txt:/image-pull/image.txt \
+        -v /var/run/docker.sock:/var/run/docker.sock  \
+        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:latest
+# 部署flannel 
+./install-networks/install-flannel.sh
 ```
-修改为:
-```bash
-#server
-#pull_images
-#set_tags
-#push_images
-
-#local
-local_pull_images
-reset_tags
+1. calico:
+```shell
+# 部署flannel 
+./install-networks/install-flannel.sh
 ```
+
 - 部署 ingress-nginx 
 拉取脚本存于[/ingress-nginx](/ingress-nginx),使用方法同上
 
