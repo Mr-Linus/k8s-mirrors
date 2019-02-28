@@ -83,9 +83,6 @@ docker run --rm -it \
 ./install-networks/install-calico.sh
 ```
 
-- 部署 ingress-nginx 
-拉取脚本存于[/ingress-nginx](/ingress-nginx),使用方法同上
-
 本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[image-pull镜像](https://github.com/Mr-Linus/image-pull)实现镜像拉取。
 假设需要拉取的镜像名写在文件`/root/image.txt`中: 
 ```text
