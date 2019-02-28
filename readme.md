@@ -79,8 +79,8 @@ docker run --rm -it \
 ```
 2. calico:
 ```shell
-# 部署flannel 
-./install-networks/install-flannel.sh
+# 部署calico
+./install-networks/install-calico.sh
 ```
 
 - 部署 ingress-nginx 
