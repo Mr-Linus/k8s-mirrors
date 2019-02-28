@@ -64,6 +64,7 @@ docker run --rm -it \
 - 部署 CNI
 选择需要的集群网络方案:`flannel`或`calico`(2选1)
 1. flannel:
+
 运行容器实现镜像拉取（可以GFW请忽略本步骤）：
 ```shell
 #获取镜像列表
