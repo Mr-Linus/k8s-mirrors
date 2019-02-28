@@ -76,7 +76,7 @@ docker run --rm -it \
 # 部署flannel 
 ./install-networks/install-flannel.sh
 ```
-1. calico:
+2. calico:
 ```shell
 # 部署flannel 
 ./install-networks/install-flannel.sh
