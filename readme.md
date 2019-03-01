@@ -35,14 +35,33 @@
 - 如果你的机器可以翻越GFW,请忽略本步骤
 - 如果你的机器不能翻越GFW,请看以下步骤：
 ### 如何使用 
-- 运行容器拉取指定镜像
-#### 版本V1.13.3
+
+- （推荐选项）设置 kubeadm 拉取仓库
+
+> 创建文件：image.yaml
+
+```yaml
+apiVersion: kubeadm.k8s.io/v1alpha3
+kind: ClusterConfiguration
+imageRepository: registry.cn-hangzhou.aliyuncs.com/image-mirror
+```
+
+拉取镜像（每个节点）：
+
+```shell
+kubeadm config images pull --config image.yaml
+```
+
+- 另一种选项：运行容器拉取指定镜像
+
+>
+> - 版本V1.13.3
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
         registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-1.13.3
 ```
-#### 版本V1.12.5
+> - 版本V1.12.5
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
