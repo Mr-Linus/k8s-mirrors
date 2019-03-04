@@ -12,7 +12,9 @@
 - 2018.8.15 已同步 dashboard 镜像
 - 2018.9.1 已同步 ingress-nginx 镜像
 ### 自动安装：
-
+```bash
+curl -s https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-k8s-kubeadm.sh | bash -
+```
 ### 手动安装：
 ### Centos 7使用kubdeadm安装K8S前需要做的工作:
 - 关闭swap
