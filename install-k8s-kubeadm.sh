@@ -13,7 +13,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo  https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 yum clean all && yum repolist
 yum makecache fast
-yum install docker-ce
+yum install -y docker-ce
 systemctl enable docker
 systemctl daemon-reload 
 systemctl restart docker 
