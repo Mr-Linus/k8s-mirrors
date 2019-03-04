@@ -11,7 +11,7 @@
 #### 目前同步的k8s版本:V1.11.0 V1.12.5 v1.13.3
 - 2018.8.15 已同步 dashboard 镜像
 - 2018.9.1 已同步 ingress-nginx 镜像
-### 自动安装：
+### 自动安装(仅限Centos7)：
 ```bash
 curl  https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-k8s-kubeadm.sh | bash -
 ```
