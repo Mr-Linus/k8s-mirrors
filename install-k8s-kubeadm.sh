@@ -1,5 +1,5 @@
 #!/bin/bash
-yum update && yum install -y curl
+yum update -y && yum install -y curl
 echo "Add aliyum Repo:"
 curl -s https://raw.githubusercontent.com/Mr-Linus/shell-repo/master/yum/yum.sh | bash - 
 echo "Install Docker:"
