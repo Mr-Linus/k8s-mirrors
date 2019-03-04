@@ -1,5 +1,4 @@
 #!/bin/bash
-sysctl net.bridge.bridge-nf-call-iptables=1
 yum install -y curl
 echo "Install Docker:"
 mkdir -p /etc/docker
@@ -44,6 +43,7 @@ systemctl disable firewalld
 systemctl stop firewalld
 echo "Install kubeadm:"
 curl  https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-generic/install-kubeadm_el7.sh | bash - 
+sysctl net.bridge.bridge-nf-call-iptables=1
 echo "Install K8S:"
 curl  https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-generic/install-k8s-master.sh | bash - 
 echo "Install flannel for k8s CNI:"
