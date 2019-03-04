@@ -1,9 +1,7 @@
 #!/bin/bash
 version=$(kubeadm config images list | head -1 | awk -F: '{ print $2 }')
 # add images
-docker run --rm -it \
-        -v /var/run/docker.sock:/var/run/docker.sock  \
-        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-$version
+docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock  registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-$version
 ## init k8s 
 kubeadm init --kubernetes-version=$version  --pod-network-cidr=10.244.0.0/16 
 ## --kubernetes-version=v1.13.4 指定版本
