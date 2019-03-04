@@ -10,8 +10,8 @@ cat > /etc/docker/daemon.json <<EOF
 EOF
 yum remove docker docker-common docker-selinux  docker-engine
 yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo  https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-yum clean all && yum repolist
+curl -s https://download.docker.com/linux/centos/docker-ce.repo > /etc/yum.repos.d/docker-ce.repo
+sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 yum makecache fast
 yum install -y docker-ce
 systemctl enable docker
