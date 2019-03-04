@@ -1,7 +1,11 @@
 #!/bin/bash
-version=$(kubeadm config images list | head -1 | awk -F: '{ print $2 }')
-# add images
-docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock  registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-$version
+echo "add images"
+cat > $(pwd)/kubeadm-images.yaml << EOF	# add images
+apiVersion: kubeadm.k8s.io/v1alpha3	docker run --rm -it \
+kind: ClusterConfiguration	        -v /var/run/docker.sock:/var/run/docker.sock  \
+imageRepository: registry.cn-hangzhou.aliyuncs.com/image-mirror	
+EOF
+kubeadm config images pull --config $(pwd)/kubeadm-images.yaml
 ## init k8s 
 kubeadm init --kubernetes-version=$version  --pod-network-cidr=10.244.0.0/16 
 ## --kubernetes-version=v1.13.4 指定版本
