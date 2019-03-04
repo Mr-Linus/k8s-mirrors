@@ -1,4 +1,5 @@
 #!/bin/bash
+sysctl net.bridge.bridge-nf-call-iptables=1
 yum install -y curl
 echo "Install Docker:"
 mkdir -p /etc/docker
