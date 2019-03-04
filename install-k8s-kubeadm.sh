@@ -1,5 +1,5 @@
 #!/bin/bash
-yum update -y && yum install -y curl
+yum install -y curl
 echo "Install Docker:"
 mkdir -p /etc/docker
 touch /etc/docker/daemon.json
