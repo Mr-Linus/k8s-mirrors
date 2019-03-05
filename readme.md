@@ -63,13 +63,13 @@ kubeadm config images pull --config image.yaml
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
-        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-1.13.3
+        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-v1.13.3
 ```
 > - 版本V1.12.5
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
-        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-1.12.5
+        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-v1.12.5
 ```
 
 #### 需要注意的是,每个节点无论是工作节点还是master节点都需要拉取镜像!! 
