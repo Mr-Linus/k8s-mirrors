@@ -9,6 +9,7 @@
 利用境外Travis CI服务器协助我们拉取gcr.io的镜像,打上tag并推送至阿里云,实现容器镜像的境内mirrors
 本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[image-pull 镜像工具](https://github.com/Mr-Linus/image-pull)实现镜像拉取。
 #### 目前同步的k8s版本:V1.12.5 - V1.16.0（最新）
+- 2019.9.24 支持自动更新镜像
 - 2018.8.15 已同步 dashboard 镜像
 - 2018.9.1 已同步 ingress-nginx 镜像
 ### 自动安装(仅限Centos7)：
