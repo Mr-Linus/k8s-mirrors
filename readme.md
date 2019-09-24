@@ -7,8 +7,8 @@
 ### 原理
 
 利用境外Travis CI服务器协助我们拉取gcr.io的镜像,打上tag并推送至阿里云,实现容器镜像的境内mirrors
-
-#### 目前同步的k8s版本:V1.11.0 V1.12.5 v1.13.3
+本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[image-pull 镜像工具](https://github.com/Mr-Linus/image-pull)实现镜像拉取。
+#### 目前同步的k8s版本:V1.12.5 - V1.16.0（最新）
 - 2018.8.15 已同步 dashboard 镜像
 - 2018.9.1 已同步 ingress-nginx 镜像
 ### 自动安装(仅限Centos7)：
@@ -16,17 +16,12 @@
 curl  https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-k8s-kubeadm.sh | bash -
 ```
 ### 手动安装：
-### Centos 7使用kubdeadm安装K8S前需要做的工作:
-- 关闭swap
-- 关闭selinux
-- 关闭防火墙
-- 集群里的每个节点的/etc/hosts都要有所有节点ip和与其对应的hostname
-- docker安装完毕 
-- 让系统内核开启网络转发
+
+[推荐安装流程](https://note.run-linux.com/2019/03/10/Install-K8S-with-kubeadm/)
 
 > 安装docker可以参考[docker安装脚本](https://github.com/Mr-Linus/shell-repo/blob/master/docker/docker_common.sh)
 >
-> 不要瞎看网上的教程,kubeadm安装不同于二进制安装,只需安装必须的kubeadm和kubelet等组件,其他如etcd等服务都是通过kubeadm自动创建,无需自行安装!
+> 不要瞎看网上的教程,kubeadm安装不同于二进制安装,只需安装必须的 kubeadm和kubelet等组件,其他如etcd等服务都是通过kubeadm自动创建,无需自行安装!
 
 ### 安装kubeadm
 
@@ -40,7 +35,7 @@ curl  https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-k8s-
 - 如果你的机器不能翻越GFW,请看以下步骤：
 ### 如何使用 
 
-- （推荐选项）设置 kubeadm 拉取仓库
+- 方法1：设置 kubeadm 拉取仓库
 
 > 创建文件：image.yaml
 
@@ -56,21 +51,29 @@ imageRepository: registry.cn-hangzhou.aliyuncs.com/image-mirror
 kubeadm config images pull --config image.yaml
 ```
 
-- 另一种选项：运行容器拉取指定镜像
+- 方法2：运行容器拉取指定镜像
+ 
 
->
-> - 版本V1.13.3
+> - 以版本V1.16.0为例
 ```shell
 docker run --rm -it \
         -v /var/run/docker.sock:/var/run/docker.sock  \
-        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-v1.13.3
+        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-v1.16.0
 ```
-> - 版本V1.12.5
+
+- 方法3：执行命令：
 ```shell
-docker run --rm -it \
-        -v /var/run/docker.sock:/var/run/docker.sock  \
-        registry.cn-hangzhou.aliyuncs.com/geekcloud/image-pull:k8s-v1.12.5
+images=($(kubeadm config images list 2>/dev/null | awk -F'/' '{print $2}'))
+for imageName in ${images[@]} ; do
+    echo "docker pull registry.cn-hangzhou.aliyuncs.com/image-mirror/${imageName}"
+    docker pull registry.cn-hangzhou.aliyuncs.com/image-mirror/${imageName}
+    echo "docker tag registry.cn-hangzhou.aliyuncs.com/image-mirror/${imageName} k8s.gcr.io/${imageName}"
+    docker tag registry.cn-hangzhou.aliyuncs.com/image-mirror/${imageName} k8s.gcr.io/${imageName}
+    echo "docker tag registry.cn-hangzhou.aliyuncs.com/image-mirror/${imageName} k8s.gcr.io/${imageName}"
+    docker rmi registry.cn-hangzhou.aliyuncs.com/image-mirror/${imageName}
+done
 ```
+
 
 #### 需要注意的是,每个节点无论是工作节点还是master节点都需要拉取镜像!! 
 #### 否则将会出现pod一直处于pending或者构建镜像的状态!! 
@@ -106,7 +109,6 @@ docker run --rm -it \
 ./install-networks/install-calico.sh
 ```
 
-本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[image-pull镜像](https://github.com/Mr-Linus/image-pull)实现镜像拉取。
 假设需要拉取的镜像名写在文件`/root/image.txt`中: 
 ```text
 quay.io/coreos/flannel:v0.11.0
