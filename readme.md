@@ -32,8 +32,7 @@ curl  https://raw.githubusercontent.com/Mr-Linus/k8s-mirrors/master/install-k8s-
 > 安装脚本附带详细注释,安装出现任何疑问可以查看
 
 ### 拉取镜像
-- 如果你的机器可以翻越GFW,请忽略本步骤
-- 如果你的机器不能翻越GFW,请看以下步骤：
+- 如果你的机器可以翻越GFW,请忽略本步骤，如果你的机器不能翻越GFW,请遵循如下流程：
 ### 如何使用 
 
 - 方法1：设置 kubeadm 拉取仓库
