@@ -1,13 +1,14 @@
 ## K8S-Mirrors
 
-通过Travis CI自动触发拉取官方k8s镜像并推送到阿里云容器镜像仓库
+通过[image-pull 镜像工具](https://github.com/Mr-Linus/image-pull)自动触发拉取官方 k8s 镜像并推送到阿里云容器镜像仓库
 
 ![build](https://travis-ci.org/Mr-Linus/k8s-mirrors.svg?branch=master)
 
 ### 原理
 
-利用境外Travis CI服务器协助我们拉取gcr.io的镜像,打上tag并推送至阿里云,实现容器镜像的境内mirrors
+利用[image-pull 镜像工具](https://github.com/Mr-Linus/image-pull)自动化构建本项目客户端镜像，协助我们拉取 gcr.io 的镜像,打上 tag 并推送至阿里云,实现容器镜像的国内 `mirrors`。
 本项目致力于搭建完整的 K8S 平台，如果需要其他额外镜像，您可以使用[image-pull 镜像工具](https://github.com/Mr-Linus/image-pull)实现镜像拉取。
+
 #### 目前同步的k8s版本:V1.12.5 - V1.17.x（最新）
 - 2019.9.24 支持自动更新镜像
 - 2018.8.15 已同步 dashboard 镜像
