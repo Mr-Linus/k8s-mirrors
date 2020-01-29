@@ -14,6 +14,5 @@ os:
 install: 
   - pip install -r requirements.txt  
 script: 
-  -  /bin/bash network-images.sh
-  -  /bin/bash ingress-nginx/ingress-nginx-images.sh
-  - sudo rm -f /home/travis/.docker/config.json
+  -  /bin/bash set_travis_env.sh
+  -  /bin/bash sync_image.sh
