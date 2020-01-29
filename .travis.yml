@@ -10,9 +10,6 @@ python:
   - "3.6"
 os:
   - linux
-
-install: 
-  - pip install -r requirements.txt  
 script: 
   -  /bin/bash set_travis_env.sh
   -  /bin/bash sync_image.sh
